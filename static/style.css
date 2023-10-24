@@ -38,15 +38,17 @@ canvas {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 4px solid rgb(10, 108, 235);
+    border: 4px solid rgba(6, 73, 161, 0.886);
     z-index: 1;
     transition: background-color 0.5s ease,
+                border-width 0.5s ease,
                 border-color 0.5s ease;
 }
 
 .container:hover {
-    background-color: rgba(5, 7, 14, 0.842);
-    border-color:  rgb(0, 54, 124);
+    background-color: rgba(5, 7, 14, 0.878);
+    border-color:  rgb(0, 38, 206);
+    border-width: 8px;
 }
 
 .image {
