@@ -1,8 +1,8 @@
 
 (function () {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
-            window.setTimeout(callback, 1000 / 60);
-        };
+        window.setTimeout(callback, 1000 / 60);
+    };
     window.requestAnimationFrame = requestAnimationFrame;
 })();
 
@@ -54,7 +54,7 @@ Terrain.prototype.update = function () {
     // draw the terrain
     this.terCtx.clearRect(0, 0, width, height);
     this.terCtx.fillStyle = this.fillStyle;
-    
+
     if (new Date().getTime() > this.lastScroll + this.scrollDelay) {
         this.lastScroll = new Date().getTime();
         this.points.push(this.points.shift());
@@ -103,21 +103,21 @@ Star.prototype.update = function () {
     } else {
         bgCtx.fillStyle = this.color;
         bgCtx.fillRect(this.x, this.y, this.size, this.size);
-        
+
         if (!this.blinking && Math.random() < 0.0004) {
             this.blinking = true;
             var originalColor = this.color;
             this.color = '#221c32'; //
-            
+
             var self = this;
-            setTimeout(function() {
+            setTimeout(function () {
                 self.color = originalColor;
                 self.blinking = false;
 
                 var sizeMultiplier = getRandomSizeMultiplier();
                 this.size *= sizeMultiplier;
 
-                setTimeout(function() {
+                setTimeout(function () {
                     this.size /= sizeMultiplier;
                 }, 100);
             }, 3000);
@@ -172,12 +172,12 @@ for (var i = 0; i < height; i++) {
 for (var i = 0; i < 8; i++) {
     entities.push(new ShootingStar());
 }
-entities.push(new Terrain({mHeight : (height/2)-120}));
-entities.push(new Terrain({displacement : 120, scrollDelay : 50, fillStyle : "rgb(17,20,40)", mHeight : (height/2)-60}));
-entities.push(new Terrain({displacement : 100, scrollDelay : 20, fillStyle : "rgb(10,10,5)", mHeight : height/2}));
+entities.push(new Terrain({ mHeight: (height / 2) - 120 }));
+entities.push(new Terrain({ displacement: 120, scrollDelay: 50, fillStyle: "rgb(17,20,40)", mHeight: (height / 2) - 60 }));
+entities.push(new Terrain({ displacement: 100, scrollDelay: 20, fillStyle: "rgb(10,10,5)", mHeight: height / 2 }));
 
 function fadeIn(element, duration) {
-    return new Promise(function(resolve) {
+    return new Promise(function (resolve) {
         var start = window.performance.now();
         var initialOpacity = parseFloat(element.style.opacity);
         var targetOpacity = 1;
@@ -208,8 +208,7 @@ function fadeIn(element, duration) {
 var maxBlinkDistance = 30;
 var blinking = false;
 
-function getDistance(x1, y1, x2, y2)
-{
+function getDistance(x1, y1, x2, y2) {
     return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
@@ -217,7 +216,7 @@ function getRandomSizeMultiplier() {
     return Math.random() * 0.7 + 1.0;
 }
 
-document.addEventListener('mousemove', function(event) {
+document.addEventListener('mousemove', function (event) {
     var x = event.clientX;
     var y = event.clientY;
 
@@ -231,9 +230,9 @@ document.addEventListener('mousemove', function(event) {
                 var sizeMultiplier = getRandomSizeMultiplier();
                 star.size *= sizeMultiplier;
 
-                (function(star) {
+                (function (star) {
                     setTimeout(function () {
-                        star.color = '#ffffff'; 
+                        star.color = '#ffffff';
                         star.size /= sizeMultiplier;
                     }, 500);
                 })(star);
@@ -253,7 +252,7 @@ function animate() {
 
     while (entLen--) {
         entities[entLen].update();
-    }   
+    }
     requestAnimationFrame(animate);
 }
 
